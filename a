@@ -1,0 +1,27 @@
+from tkinter import *
+from pytube import YouTube
+
+root=Tk()
+root.geometry("500x300")
+root.resizable(0,0)
+root.title("Z3TAR - YouTube Downloader")
+root.config(bg = 'red')
+
+Label(root, text = 'Youtube video downloader', font = 'arial 20 bold', bg = 'red').pack()
+
+link = StringVar()
+
+Label(root, text = 'Paste Link Here:', font = 'arial 15 bold', bg = 'red').place(x= 160 , y = 60)
+link_enter = Entry(root, width = 50,textvariable = link).place(x = 32, y = 90)
+
+def Downloader():     
+    url =YouTube(str(link.get()))
+    video = url.streams.first()
+    video.download()
+    Label(root, text = 'DOWNLOADED!', font = 'arial 15').place(x= 180 , y = 210) 
+
+Button(root, text ="Download",font = "arial 15 bold",bg = "ghostwhite",command = Downloader).place(x=180,y=120)
+
+root.mainloop()
+
+
